@@ -13,7 +13,7 @@ title: Infitialis Blog
           </a>
 
           <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-          By {{ post.author.display_name }} | {{ post.date | date: "%d %b, %Y" }}
+          {{ post.date | date: "%d %b, %Y" }}
           <p>{{ post.content | truncatewords: 50 }}</p>
           <p><a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a></p>
 
