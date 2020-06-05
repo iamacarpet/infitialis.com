@@ -898,18 +898,17 @@ dl dd {
 }
 
 .site-title {
-    color: #666;
     font-family: "Crimson Text", serif;
-    font-size: 1rem;
+    font-size: 1.33333rem;
+    line-height: 1.2;
     font-weight: 600;
-    line-height: 1;
     margin: 0;
     -ms-flex-pack: center;
     justify-content: center;
 }
 
 .site-title a {
-    color: #fff;
+    color: #666;
     text-decoration: none
 }
 
@@ -917,9 +916,10 @@ dl dd {
     color: #666;
     font-family: Karla, sans-serif;
     font-weight: 400;
-    font-size: .625rem;
     letter-spacing: .15em;
-    line-height: 1;
+    font-size: .66667rem;
+    line-height: 1.2;
+    margin-top: .4em
     margin: .25em 0 0;
     text-transform: uppercase;
     -ms-flex-pack: center;
