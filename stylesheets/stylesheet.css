@@ -943,7 +943,9 @@ dl dd {
     display: flex;
     margin: 0 10px .5em 0;
     padding: 0 3px;
-    text-decoration: none
+    text-decoration: none;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
 .social-links svg {
@@ -989,8 +991,7 @@ dl dd {
         margin-top: .4em
     }
     .social-links {
-        -ms-flex-pack: center;
-        justify-content: center;
+       
     }
     .social-links a {
         margin: 0 5px .5em
