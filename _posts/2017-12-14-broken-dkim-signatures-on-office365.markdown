@@ -21,7 +21,7 @@ We first noticed that delivery of messages with attachments from one of our 3rd 
 
 To make matters worse, the 3rd party supplier was getting a very misleading bounce message about SPF records, at first glance instructing them to add "[spf.protection.outlook.com](http://spf.protection.outlook.com/)" to their SPF.
 
-<blockquote style="padding: 10px;">
+<blockquote style="padding: 10px; overflow: scroll;">
 <br>
 <div style="-webkit-text-stroke-width: 0px; background-color: white; color: #222222; font-family: arial, sans-serif; font-size: 12.8px; font-style: normal; font-variant-caps: normal; font-variant-ligatures: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-decoration-color: initial; text-decoration-style: initial; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;">
 <table cellpadding="0" cellspacing="0" style="border-collapse: collapse; color: black; max-width: 548px; padding-bottom: 0px; padding-top: 0px; width: 548px;"><tbody>
