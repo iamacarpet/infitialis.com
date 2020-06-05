@@ -878,10 +878,15 @@ dl dd {
 
 .profile,
 .site-logo {
-    -ms-flex: 0 0 auto;
+    /*-ms-flex: 0 0 auto;
     -webkit-flex: 0 0 auto;
-    flex: 0 0 auto;
-    margin: 0 10px 0 0
+    flex: 0 0 auto;*/
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    margin: 10px;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
 .profile a,
@@ -895,8 +900,6 @@ dl dd {
     display: block;
     height: 125px;
     width: 125px;
-    -ms-flex-pack: center;
-    justify-content: center;
 }
 
 .site-title {
@@ -907,11 +910,17 @@ dl dd {
     margin: 0;
     -ms-flex-pack: center;
     justify-content: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
 }
 
 .site-title a {
     color: #666;
-    text-decoration: none
+    text-decoration: none;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
 }
 
 .site-description {
@@ -924,8 +933,9 @@ dl dd {
     margin-top: .4em
     margin: .25em 0 0;
     text-transform: uppercase;
-    -ms-flex-pack: center;
-    justify-content: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
 }
 
 .social-links {
