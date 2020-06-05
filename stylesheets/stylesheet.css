@@ -888,7 +888,8 @@ dl dd {
 }
 
 .site-logo img {
-    max-height: 45px
+    height:125px;
+    width:125px;
 }
 
 .profile .avatar {
