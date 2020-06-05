@@ -113,7 +113,12 @@ While exploring the issue, we looked at the message that was successfully deliev
 
 The SPAM headers look like this:
 
-> X-Microsoft-Exchange-Diagnostics: \*\*REDACTED BASE64 DATA\*\*X-Microsoft-Antispam-Mailbox-Delivery: \*\*REDACTED STRING\*\*X-Microsoft-Antispam-Message-Info: \*\*REDACTED BASE64 DATA\*\*Content-ID: &lt;\*\*REDACTED\*\*@eurprd04.prod.outlook.com&gt;
+```
+X-Microsoft-Exchange-Diagnostics: **REDACTED BASE64 DATA**
+X-Microsoft-Antispam-Mailbox-Delivery: **REDACTED STRING**
+X-Microsoft-Antispam-Message-Info: **REDACTED BASE64 DATA**
+Content-ID: <**REDACTED**@eurprd04.prod.outlook.com>
+```
 
 On trying to re-create the issue, I sent an email from a gmail.com address to one of the accounts that is using split delivery, so I could see the issue from both sides. This identified something else, that Office365 is altering the multi-part boundry strings as it forwards on the message.
 
@@ -124,35 +129,48 @@ It turns out, that hidden in the diff by the fact the multi-part boundary string
 
 The additional headers, the changes to the multi-part boundary strings and even the headers inside the multi-part sections themselves don't seem to affect the signature; it's just the newline.
 
-
 As you can see here, example diff from the email with attachment:
 
-> 24,25c161,163&lt; --001a114733c035484b056025d07f--&lt; --001a114733c0354850056025d081---&gt; --001a114b306e43341b056025d01a--&gt;&gt; --001a114b306e43341e056025d01c
+```
+24,25c161,163
+< --001a114733c035484b056025d07f--
+< --001a114733c0354850056025d081
+---
+> --001a114b306e43341b056025d01a--
+>
+> --001a114b306e43341e056025d01c
+```
 
 Compared to the email without the attachment:
 
-> 26,27c88,89&lt; --001a1148e7ba4a6e8b05604cdd8c--&lt; --001a1148e7ba4a6e9105604cdd8e---&gt; --001a11468748570c3605604cdd36--&gt; --001a11468748570c3a05604cdd38
+```
+26,27c88,89
+< --001a1148e7ba4a6e8b05604cdd8c--
+< --001a1148e7ba4a6e9105604cdd8e
+---
+> --001a11468748570c3605604cdd36--
+> --001a11468748570c3a05604cdd38
+```
 
 And a quick test showed that had fixed the validation:
 
-> smelrose@vdev2:-$ python dkimpy-0.6.2/dkimverify.py &lt; broken\_email\_received.txtsignature verification failed
->
->
-> smelrose@vdev2:-$ cp broken\_email\_received.txt br\_test.txt; vi br\_test.txt\[ edited the file and removed the newline \]
->
->
-> smelrose@vdev2:-$ python dkimpy-0.6.2/dkimverify.py &lt; br\_test.txtsignature ok
+```
+smelrose@vdev2:-$ python dkimpy-0.6.2/dkimverify.py < broken_email_received.txt
+signature verification failed
+
+smelrose@vdev2:-$ cp broken_email_received.txt br_test.txt; vi br_test.txt
+[ edited the file and removed the newline ]
+
+smelrose@vdev2:-$ python dkimpy-0.6.2/dkimverify.py < br_test.txt
+signature ok
+```
 
 So far, Microsoft support haven't understood the problem at all.
 
-&nbsp;
-
 After emailing them over the details of what I've been investigating, they insisted on calling me to discuss it over the phone, only to get confused and keep telling me over and over again to alter the SPF records.
 
-&nbsp;
 
 I reached out to secure@microsoft.com, who emailed back after a few hours to say if it wasn't a RCE or MITM, they weren't interested.
 
-&nbsp;
 
 My last attempt is to teach out to @Office365 on Twitter, who I will be sending a link to this article, so I'll update how that goes.
