@@ -887,17 +887,12 @@ dl dd {
     color: #1d1d1d
 }
 
-.site-logo img {
-    height:125px;
-    width:125px;
-}
-
 .profile .avatar {
     border: 2px solid #d4a259;
     border-radius: 100%;
     display: block;
-    height: 45px;
-    width: 45px;
+    height: 125px;
+    width: 125px;
     -ms-flex-pack: center;
     justify-content: center;
 }
