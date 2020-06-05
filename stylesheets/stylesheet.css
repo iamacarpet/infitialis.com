@@ -615,7 +615,7 @@ form {
   margin-top: 0;
   margin-bottom: 0;
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
-  font-size: 2.8em;
+  /*font-size: 2.8em;*/
   font-weight: normal;
   color: #474747;
   text-indent: 6px;
@@ -632,7 +632,7 @@ form {
 #main-content h2 {
   margin-bottom: 8px;
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
-  font-size: 22px;
+  /*font-size: 22px;*/
   font-weight: bold;
   color: #474747;
   text-indent: 4px;
