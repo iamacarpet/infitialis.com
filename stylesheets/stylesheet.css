@@ -952,25 +952,6 @@ dl dd {
 }
 
 @media only screen and (min-width:801px) {
-    .site-content {
-        margin-left: 30vw;
-        padding-bottom: 3.33333em;
-        padding-top: 3.33333em
-    }
-    .site-header {
-        height: 100%;
-        left: 0;
-        position: fixed;
-        text-align: center;
-        top: 0;
-        width: 30vw
-    }
-    .site-header-wrap {
-        height: 100%;
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
-        position: relative
-    }
     .site-header-inside {
         padding-bottom: 3.33333em;
         padding-top: 3.33333em
