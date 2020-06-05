@@ -950,3 +950,64 @@ dl dd {
     fill: currentColor;
     height: 18px
 }
+
+@media only screen and (min-width:801px) {
+    .site-content {
+        margin-left: 30vw;
+        padding-bottom: 3.33333em;
+        padding-top: 3.33333em
+    }
+    .site-header {
+        height: 100%;
+        left: 0;
+        position: fixed;
+        text-align: center;
+        top: 0;
+        width: 30vw
+    }
+    .site-header-wrap {
+        height: 100%;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        position: relative
+    }
+    .site-header-inside {
+        padding-bottom: 3.33333em;
+        padding-top: 3.33333em
+    }
+    .site-branding {
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+    .site-identity {
+        margin-bottom: 1.66667em;
+        padding: 0
+    }
+    .profile,
+    .site-logo {
+        margin: 0 0 1.66667em
+    }
+    .site-logo img {
+        max-height: 100px
+    }
+    .profile .avatar {
+        height: 100px;
+        width: 100px
+    }
+    .site-title {
+        font-size: 1.33333rem;
+        line-height: 1.2
+    }
+    .site-description {
+        font-size: .66667rem;
+        line-height: 1.2;
+        margin-top: .4em
+    }
+    .social-links {
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+    .social-links a {
+        margin: 0 5px .5em
+    }
+}
