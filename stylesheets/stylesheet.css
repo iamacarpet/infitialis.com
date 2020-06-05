@@ -466,7 +466,7 @@ header h1 {
   letter-spacing: -1px;
 }
 
-header h1 a {
+header h1 a, header h1 a:hover {
   color: #fff;
 }
 
