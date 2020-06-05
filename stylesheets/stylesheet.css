@@ -900,6 +900,7 @@ dl dd {
     display: block;
     height: 125px;
     width: 125px;
+    margin-top: 1.66667em;
 }
 
 .site-title {
