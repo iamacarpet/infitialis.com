@@ -997,7 +997,7 @@ nav {
 }
 
 .posts > .post {
-  /*padding: 2em 0 2em 0;*/
+  padding: 2em 0 2em 0;
   border-top: 1px solid #666;
 }
 
@@ -1009,7 +1009,7 @@ nav {
 .post {
   blockquote {
     margin: 1.8em .8em;
-    /*border-left: 2px solid #666;*/
+    border-left: 2px;
     padding: 0.1em 1em;
     color: #666;
     font-size: 15px;
