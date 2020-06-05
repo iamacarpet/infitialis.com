@@ -10,4 +10,51 @@ title: Infitialis Blog
       <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
   </ul>
+    <div class="posts">
+      {% for post in paginator.posts %}
+        <article class="post">
+
+          <a href="{{ site.baseurl }}/category/{{ post.categories }}">
+            <span class="category">{{ post.categories }}</span>
+          </a>
+
+          <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+          By {{ post.author.display_name }} | {{ post.date | date: "%d %b, %Y" }}
+          <p>{{ post.content | truncatewords: 50 }}</p>
+          <p><a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a></p>
+
+        </article>
+      {% endfor %}
+
+      <!-- Pagination links -->
+      <div class="pagination">
+        <nav aria-label="Page navigation">
+          <ul class="pagination pagination-md">
+          {% if paginator.previous_page %}
+            <li class="page-item">
+              <a class="page-link" href="{{ site.baseurl }}{{ paginator.previous_page_path }}" class="previous">
+                Previous
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="{{ site.baseurl }}{{ paginator.previous_page_path }}" class="previous">{{ paginator.previous_page }}</a>
+            </li>
+          {% endif %}
+            <li class="page-item active" aria-current="page">
+              <span class="page-link" class="page_number ">
+                {{ paginator.page }}
+              </span>
+            </li>
+          {% if paginator.next_page %}
+            <li class="page-item">
+              <a class="page-link" href="{{ site.baseurl }}{{ paginator.next_page_path }}" class="next">{{ paginator.next_page }}</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="{{ site.baseurl }}{{ paginator.next_page_path }}" class="next">Next</a>
+            </li>
+          {% endif %}
+            </ul>
+        </nav>
+      </div>
+    </div>
 </div>
