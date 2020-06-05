@@ -896,7 +896,9 @@ dl dd {
     border-radius: 100%;
     display: block;
     height: 45px;
-    width: 45px
+    width: 45px;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
 .site-title {
@@ -904,7 +906,9 @@ dl dd {
     font-size: 1rem;
     font-weight: 600;
     line-height: 1;
-    margin: 0
+    margin: 0;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
 .site-title a {
@@ -920,7 +924,9 @@ dl dd {
     letter-spacing: .15em;
     line-height: 1;
     margin: .25em 0 0;
-    text-transform: uppercase
+    text-transform: uppercase;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
 .social-links {
@@ -951,49 +957,4 @@ dl dd {
 .social-links svg {
     fill: currentColor;
     height: 18px
-}
-
-@media only screen and (min-width:801px) {
-    .site-header-inside {
-        padding-bottom: 3.33333em;
-        padding-top: 3.33333em
-    }
-    .site-branding {
-        -ms-flex-direction: column;
-        flex-direction: column;
-        -ms-flex-pack: center;
-        justify-content: center;
-    }
-    .site-identity {
-        margin-bottom: 1.66667em;
-        padding: 0
-    }
-    .profile,
-    .site-logo {
-        -ms-flex-pack: center;
-        justify-content: center;
-        margin: 0 0 1.66667em
-    }
-    .site-logo img {
-        max-height: 100px
-    }
-    .profile .avatar {
-        height: 100px;
-        width: 100px;
-    }
-    .site-title {
-        font-size: 1.33333rem;
-        line-height: 1.2
-    }
-    .site-description {
-        font-size: .66667rem;
-        line-height: 1.2;
-        margin-top: .4em
-    }
-    .social-links {
-       
-    }
-    .social-links a {
-        margin: 0 5px .5em
-    }
 }
