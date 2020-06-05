@@ -877,8 +877,7 @@ dl dd {
 }
 
 .profile,
-.site-logo,
-.site-identity {
+.site-logo{
     /*-ms-flex: 0 0 auto;
     -webkit-flex: 0 0 auto;
     flex: 0 0 auto;*/
