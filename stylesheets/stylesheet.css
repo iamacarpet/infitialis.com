@@ -867,11 +867,13 @@ dl dd {
 .site-branding {
     -ms-flex-align: center;
     -webkit-align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     align-items: center;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-    font-size: 1rem
+    font-size: 1rem;
 }
 
 .profile,
