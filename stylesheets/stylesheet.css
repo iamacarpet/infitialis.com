@@ -981,3 +981,50 @@ dl dd {
     fill: currentColor;
     height: 18px
 }
+
+nav {
+  float: right;
+  margin-top: 23px; // @TODO: Vertically middle align
+  font-family: Karla, sans-serif;
+  font-size: 18px;
+
+  a {
+    margin-left: 20px;
+    color: #000000;
+    text-align: right;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+}
+
+.posts > .post {
+  padding: 2em 0 2em 0;
+  border-top: 1px solid $lightGray;
+}
+
+.posts > .post:last-child {
+  padding-bottom: 1em;
+  border-bottom: none;
+}
+
+.post {
+  blockquote {
+    margin: 1.8em .8em;
+    border-left: 2px solid $gray;
+    padding: 0.1em 1em;
+    color: #666;
+    font-size: 22px;
+    font-style: italic;
+  }
+
+  .comments {
+    margin-top: 10px;
+  }
+
+  .read-more {
+    text-transform: uppercase;
+    font-size: 15px;
+  }
+}
+
+
