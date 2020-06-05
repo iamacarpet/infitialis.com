@@ -933,7 +933,9 @@ dl dd {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin-top: 1.66667em
+    margin-top: 1.66667em;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
 .social-links a {
@@ -947,8 +949,6 @@ dl dd {
     margin: 0 10px .5em 0;
     padding: 0 3px;
     text-decoration: none;
-    -ms-flex-pack: center;
-    justify-content: center;
 }
 
 .social-links svg {
