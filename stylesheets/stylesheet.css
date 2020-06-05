@@ -977,7 +977,9 @@ dl dd {
     }
     .site-branding {
         -ms-flex-direction: column;
-        flex-direction: column
+        flex-direction: column;
+        -ms-flex-pack: center;
+        justify-content: center;
     }
     .site-identity {
         margin-bottom: 1.66667em;
@@ -985,6 +987,8 @@ dl dd {
     }
     .profile,
     .site-logo {
+        -ms-flex-pack: center;
+        justify-content: center;
         margin: 0 0 1.66667em
     }
     .site-logo img {
@@ -992,7 +996,7 @@ dl dd {
     }
     .profile .avatar {
         height: 100px;
-        width: 100px
+        width: 100px;
     }
     .site-title {
         font-size: 1.33333rem;
@@ -1005,7 +1009,7 @@ dl dd {
     }
     .social-links {
         -ms-flex-pack: center;
-        justify-content: center
+        justify-content: center;
     }
     .social-links a {
         margin: 0 5px .5em
