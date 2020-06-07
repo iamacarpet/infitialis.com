@@ -783,8 +783,8 @@ dl dd {
   #main-content h4:before,
   #main-content h5:before,
   #main-content h6:before {
-    padding-right: 0;
-    margin-left: 0;
+    padding-right: 5px;
+    margin-left: -10px;
     content: none;
   }
 }
