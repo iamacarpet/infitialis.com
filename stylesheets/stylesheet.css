@@ -785,7 +785,6 @@ dl dd {
   #main-content h6:before {
     padding-right: 5px;
     margin-left: -10px;
-    content: none;
   }
 }
 
@@ -853,7 +852,6 @@ dl dd {
   #main-content h6:before {
     padding-right: 5px;
     margin-left: -10px;
-    content: none;
   }
 }
 
