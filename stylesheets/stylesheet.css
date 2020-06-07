@@ -982,21 +982,6 @@ dl dd {
     height: 18px
 }
 
-nav {
-  float: right;
-  margin-top: 23px; // @TODO: Vertically middle align
-  font-family: "Crimson Text", serif;
-  font-size: 18px;
-
-  a {
-    margin-left: 20px;
-    color: #000000;
-    text-align: right;
-    font-weight: 400;
-    letter-spacing: 1px;
-  }
-}
-
 .posts > .post {
   padding: 2em 0 2em 0;
   border-top: 1px solid #666;
