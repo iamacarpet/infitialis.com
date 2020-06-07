@@ -987,6 +987,10 @@ dl dd {
   border-top: 1px solid #666;
 }
 
+.posts > .post:first-child {
+  border-top: none;
+}
+
 .posts > .post:last-child {
   padding-bottom: 1em;
   border-bottom: none;
