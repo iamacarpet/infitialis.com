@@ -10,7 +10,7 @@ categories:
 
 If you've used Google Cloud for a while, I'm sure you'll agree that one of the best features is the Stackdriver suite, especially for log aggregation & analysis.
 
-On-Prem workloads can feel left behind and we've been wishing for a while to bring them all into the same place, disappointed that Google offered an [official solution](https://cloud.google.com/solutions/logging-on-premises-resources-with-blue-medora){: target="_blank"} but one that **involved**&nbsp;using another provider (and them processing the data in their own platform before it hits Stackdriver).
+On-Prem workloads can feel left behind and we've been wishing for a while to bring them all into the same place, disappointed that Google offered an [official solution](https://cloud.google.com/solutions/logging-on-premises-resources-with-blue-medora){: target="_blank"} but one that involved using another provider (and them processing the data in their own platform before it hits Stackdriver).
 
 Stackdriver's existing logging agent is already based on the flexible "fluentd" and the plugin to export to the Logs API is already fairly great; the main stumbling block to ingesting logs from network inputs is having it tagged against a resource in the Log Viewer UI that corresponds to the source.
 
