@@ -17,34 +17,22 @@ title: Infitialis Blog
       {% endfor %}
 
       <!-- Pagination links -->
-      <div class="pagination">
-        <nav aria-label="Page navigation">
-          <ul class="pagination pagination-md">
+        <div class="pagination">
           {% if paginator.previous_page %}
-            <li class="page-item">
-              <a class="page-link" href="{{ site.baseurl }}{{ paginator.previous_page_path }}" class="previous">
-                Previous
-              </a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="{{ site.baseurl }}{{ paginator.previous_page_path }}" class="previous">{{ paginator.previous_page }}</a>
-            </li>
+            <a href="{{ paginator.previous_page_path }}" class="previous">
+              &laquo; Previous
+            </a>
+          {% else %}
+            <span class="previous">Previous</span>
           {% endif %}
-            <li class="page-item active" aria-current="page">
-              <span class="page-link" class="page_number ">
-                {{ paginator.page }}
-              </span>
-            </li>
+          <span class="page_number ">
+            Page: {{ paginator.page }} of {{ paginator.total_pages }}
+          </span>
           {% if paginator.next_page %}
-            <li class="page-item">
-              <a class="page-link" href="{{ site.baseurl }}{{ paginator.next_page_path }}" class="next">{{ paginator.next_page }}</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="{{ site.baseurl }}{{ paginator.next_page_path }}" class="next">Next</a>
-            </li>
+            <a href="{{ paginator.next_page_path }}" class="next">Next &raquo;</a>
+          {% else %}
+            <span class="next ">Next &raquo;s</span>
           {% endif %}
-            </ul>
-        </nav>
-      </div>
+        </div>
     </div>
 </div>
