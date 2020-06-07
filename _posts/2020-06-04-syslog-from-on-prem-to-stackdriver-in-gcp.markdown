@@ -30,3 +30,5 @@ It is based on the Stackdriver agent's [repo on GitHub](https://github.com/Googl
 Logs will show up under "Generic Node" and drill down tags first based on the "NETWORK\_NAME" environment variable set in the logging agent container, then the hostname / IP the entry was logged from.
 
 It is worth noting that in our testing, Cisco switches & pfSense (FreeBSD) systems don't seem to be parsed properly by "fluentd", either as rfc5424 or rfc3164, so we resorted to ingesting those as raw UDP and losing some metadata.
+
+If you already have structured logging locally and syslog would be a step backwards, you should also be able to forward entries from you local "fluentd" instances using [it's own input plugin](https://docs.fluentd.org/input/forward){: target="_blank"} very easily.
