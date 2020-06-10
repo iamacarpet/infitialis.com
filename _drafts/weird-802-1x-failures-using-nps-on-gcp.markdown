@@ -16,23 +16,19 @@ We'd already tried a packet capture on our local firewall (tcpdump) and at first
 
 Next, after we'd got [syslog ingestion into Stackdriver](https://www.infitialis.com/2020/06/04/syslog-from-on-prem-to-stackdriver-in-gcp/){: target="_blank"} so there was somewhere to actually analyze the generated logs, we tried [turning on debugging on the Cisco switch](https://community.cisco.com/t5/security-documents/802-1x-wired-authentication-on-a-cisco-switch-3550-with-acs-4-2/ta-p/3140855#toc-hId-594963557){: target="_blank"} we were using for testing:
 
-> debug dot1x all
->
->
-> debug authentication all
->
->
-> debug radius
->
->
-> debug aaa authentication
->
->
-> debug aaa authorization
+```
+debug dot1x all
+debug authentication all
+debug radius
+debug aaa authentication
+debug aaa authorization
+```
 
-And then this extra line in the config via "conf t" so the debug results are posted to the syslog endpoint:
+And then this extra line in the config via `conf t` so the debug results are posted to the syslog endpoint:
 
-> logging trap debugging
+```
+logging trap debugging
+```
 
 Again, the Cisco logs showed timeouts, but thankfully in more detail, telling us it was the remote end (RADIUS server) that we were timing out on, but weirdly, it could communicate with it in some instances (dummy logins for the liveness check), just the more complex PEAP logins weren't progressing properly.
 
