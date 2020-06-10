@@ -4,8 +4,9 @@ title: Weird 802.1x Failures using NPS on GCP
 date: 2020-06-10 21:30:00
 categories:
   - Google Cloud
-  - Kubernetes
-  - Stackdriver
+  - Windows Server
+  - Cisco
+  - RADIUS
 ---
 
 After trying to migrate our RADIUS traffic for 802.1x to the new endpoints on GCP, running the latest Windows Server 2019 and Network Policy Server (NPS), we noticed straight away that authentication was failing.
