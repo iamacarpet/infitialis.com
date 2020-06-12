@@ -1,0 +1,28 @@
+---
+layout: post
+title: GCP Service Accounts for External OAuth2
+date: 2020-06-12 10:30:00
+categories:
+  - Google Cloud
+  - OAuth2
+  - GCP-IAM
+  - Cryptography
+---
+
+Recently we had a requirement to integrate with a partner that was using their own OAuth2 infrastructure, which required us to use a public/private key pair and signed JWTs, equivelant of Google's 2LO (2-legged) OAuth2 with their service accounts.
+
+Keeping the public / private key pairs secure in a production environment can be hard, combined with the administration overhead of managing the key pairs in the first place (generating them, distributing them and ensuring they aren't shared outside of the required environment, plus rotating them if required).
+
+Google have already made this super easy for their internal OAuth2 implementation by using service accounts for managed workloads, which are managed identities that relate to automatically generated key pairs, stored securely that we don't actually have access to (most of the time).
+
+Running on App Engine, we already use the default service account extensively via the metadata server to identity ourselves to and authenticate with (e.g. OIDC tokens) other services, without really having to think about it.
+
+We had a breakthrough that we could use these Google managed keys with the external OAuth2 provider, signing our JWTs using the [signBlob](https://cloud.google.com/iam/docs/reference/credentials/rest/v1/projects.serviceAccounts/signBlob){: target="_blank"} function of the [Service Account Credentials API](https://cloud.google.com/iam/docs/reference/credentials/rest/v1/projects.serviceAccounts){: target="_blank"}, a part of IAM.
+
+Since it's already designed to work with OAuth2, it already supported everything our other provider was using: 2048bit RSA keys and SHA256 signatures (RS256), plus a public endpoint exposing the public key in JWK format as a JWKS:
+
+> * RSA public key wrapped in an X.509 v3 certificate: https://www.googleapis.com/service\_accounts/v1/metadata/x509/\{ACCOUNT\_EMAIL\}
+> * Raw key in JSON format: https://www.googleapis.com/service\_accounts/v1/metadata/raw/\{ACCOUNT\_EMAIL\}
+> * JSON Web Key (JWK): https://www.googleapis.com/service\_accounts/v1/metadata/jwk/\{ACCOUNT\_EMAIL\}
+
+&nbsp;
