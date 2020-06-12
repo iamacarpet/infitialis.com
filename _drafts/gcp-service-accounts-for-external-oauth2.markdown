@@ -25,4 +25,8 @@ Since it's already designed to work with OAuth2, it already supported everything
 > * Raw key in JSON format: https://www.googleapis.com/service\_accounts/v1/metadata/raw/\{ACCOUNT\_EMAIL\}
 > * JSON Web Key (JWK): https://www.googleapis.com/service\_accounts/v1/metadata/jwk/\{ACCOUNT\_EMAIL\}
 
+We were doing this in PHP, so we chose to use the [JWT library by lcobucci](https://github.com/lcobucci/jwt){: target="_blank"} and I wrote a [custom signer](https://github.com/a1comms/GaeSupportLaravel/blob/php72-laravel55/src/A1comms/GaeSupportLaravel/Integration/JWT/Signer/IAMSigner.php){: target="_blank"} for that library, that wrapped the Google API.
+
+An example of this in action as a Laravel route handler is shown below:
+
 &nbsp;
