@@ -29,11 +29,29 @@ We were doing this in PHP, so we chose to use the [JWT library by lcobucci](http
 
 Here is an excerpt from that code:
 
-&nbsp;
+```php
+$client = new Google_Client();
+
+$client->setApplicationName('GaeSupportLaravel-JWT/0.1');
+$client->useApplicationDefaultCredentials();
+$client->addScope('https://www.googleapis.com/auth/cloud-platform');
+
+$service = new Google_Service_IAMCredentials($client);
+
+$keyID = sprintf('projects/-/serviceAccounts/%s', $key->getContent());
+
+$requestBody = new Google_Service_IAMCredentials_SignBlobRequest();
+
+$requestBody->setPayload(base64_encode($payload));
+
+$response = $service->projects_serviceAccounts->signBlob($keyID, $requestBody);
+
+return base64_decode($response->getSignedBlob());
+```
 
 An example of this in action as a Lumen route handler is shown below:
 
-~~~php
+```php
 $router->get('/debug/jwt', function () use ($router) {
     $time = time();
 
@@ -55,10 +73,11 @@ $router->get('/debug/jwt', function () use ($router) {
 
     return 'OK';
 });
-~~~
+```
 
 You'll also need to run these composer commands (assuming you already have [GaeSupportLaravel](https://github.com/a1comms/GaeSupportLaravel){: target="_blank"} included):
 
-&nbsp;
-
-&nbsp;
+```
+$ composer require lcobucci/jwt
+$ composer require google/apiclient:"^2.0"
+```
