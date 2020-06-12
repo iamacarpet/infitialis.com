@@ -29,4 +29,26 @@ We were doing this in PHP, so we chose to use the [JWT library by lcobucci](http
 
 An example of this in action as a Laravel route handler is shown below:
 
-&nbsp;
+```php
+$router->get('/debug/jwt', function () use ($router) {
+    $time = time();
+
+    $signer = new \A1comms\GaeSupportLaravel\Integration\JWT\Signer\IAMSigner();
+
+    // DEMO_SERVICE_ACCOUNT must be defined in .env as the name of the service account,
+    // e.g. oauth2-external@demo-project.iam.gserviceaccount.com
+    $keyID = new \Lcobucci\JWT\Signer\Key(env('DEMO_SERVICE_ACCOUNT'));
+
+    $token = (new \Lcobucci\JWT\Builder())
+        ->issuedBy('demoIss')       // Configures the issuer (iss claim)
+        ->permittedFor('demoAud')   // aud claim
+        ->relatedTo('demoSub')      // sub claim
+        ->issuedAt($time)           // Configures the time that the token was issue (iat claim)
+        ->expiresAt($time + 3600)   // Configures the expiration time of the token (exp claim)
+        ->getToken($signer, $keyID);
+
+    \Log::info('Signed JWT POC: ' . var_export((string)$token, true));
+    
+    return 'OK';
+});
+```
