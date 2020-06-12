@@ -9,7 +9,7 @@ categories:
   - Cryptography
 ---
 
-Recently we had a requirement to integrate with a partner that was using their own OAuth2 infrastructure, which required us to use a public/private key pair and signed JWTs, equivelant of Google's 2LO (2-legged) OAuth2 with their service accounts.
+Recently we had a requirement to integrate with a partner that was using their own OAuth2 infrastructure, which required us to use a public/private key pair and signed JWTs, equivalent of Google's 2LO (2-legged) OAuth2 with their service accounts.
 
 Keeping the public / private key pairs secure in a production environment can be hard, combined with the administration overhead of managing the key pairs in the first place (generating them, distributing them and ensuring they aren't shared outside of the required environment, plus rotating them if required).
 
@@ -27,9 +27,9 @@ Since it's already designed to work with OAuth2, it already supported everything
 
 We were doing this in PHP, so we chose to use the [JWT library by lcobucci](https://github.com/lcobucci/jwt){: target="_blank"} and I wrote a [custom signer](https://github.com/a1comms/GaeSupportLaravel/blob/php72-laravel55/src/A1comms/GaeSupportLaravel/Integration/JWT/Signer/IAMSigner.php){: target="_blank"} for that library, that wrapped the Google API.
 
-An example of this in action as a Laravel route handler is shown below:
+An example of this in action as a Lumen route handler is shown below:
 
-```php
+~~~php
 $router->get('/debug/jwt', function () use ($router) {
     $time = time();
 
@@ -48,7 +48,7 @@ $router->get('/debug/jwt', function () use ($router) {
         ->getToken($signer, $keyID);
 
     \Log::info('Signed JWT POC: ' . var_export((string)$token, true));
-    
+
     return 'OK';
 });
-```
+~~~
