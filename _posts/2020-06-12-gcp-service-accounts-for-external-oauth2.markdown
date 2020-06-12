@@ -27,6 +27,10 @@ Since it's already designed to work with OAuth2, it already supported everything
 
 We were doing this in PHP, so we chose to use the [JWT library by lcobucci](https://github.com/lcobucci/jwt){: target="_blank"} and I wrote a [custom signer](https://github.com/a1comms/GaeSupportLaravel/blob/php72-laravel55/src/A1comms/GaeSupportLaravel/Integration/JWT/Signer/IAMSigner.php){: target="_blank"} for that library, that wrapped the Google API.
 
+Here is an excerpt from that code:
+
+&nbsp;
+
 An example of this in action as a Lumen route handler is shown below:
 
 ~~~php
@@ -52,3 +56,9 @@ $router->get('/debug/jwt', function () use ($router) {
     return 'OK';
 });
 ~~~
+
+You'll also need to run these composer commands (assuming you already have [GaeSupportLaravel](https://github.com/a1comms/GaeSupportLaravel){: target="_blank"} included):
+
+&nbsp;
+
+&nbsp;
