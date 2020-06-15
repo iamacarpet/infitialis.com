@@ -7,6 +7,7 @@ categories:
   - Windows Server
   - Cisco
   - RADIUS
+  - Networking
 ---
 
 After trying to migrate our RADIUS traffic for 802.1x to the new endpoints on GCP, running the latest Windows Server 2019 and Network Policy Server (NPS), we noticed straight away that authentication was failing.
