@@ -17,4 +17,14 @@ The official advice says to just use the `log` package in Go itself, which is lo
 
 [Michael Traver](https://github.com/mtraver){: target="_blank"}&nbsp;from the App Engine team posted a library that showed how to log directly to the Stackdriver API and tag logs with the relevant trace ID from the inbound request, so logs are still tied together with the access log entries in Stackdriver.
 
+However, in our testing it slowed down our app considerably, as at the time of writing, it submitted each log entry to the Stackdriver Logs API synchronously and the API itself has quite high request latencies.
+
 ![Image of Stackdriver Logs](https://github.com/mtraver/gaelog/raw/master/images/log_levels.png)
+
+We wanted to improve on this, both by submitting logs asynchronously again and also allowing structured logs with a searchable "jsonPayload" full of elements.
+
+In the end, we created "[go-gaelog](https://github.com/a1comms/go-gaelog){: target="_blank"}" to achieve this.
+
+Borrowing some experience from working with the PHP 7.2 runtime, where we learnt that logs written to any file written with a filename that matched "/var/log/\*.log" would automatically be checked for JSON then submitted to the Stackdriver Logs API by the underlying platform.
+
+&nbsp;
