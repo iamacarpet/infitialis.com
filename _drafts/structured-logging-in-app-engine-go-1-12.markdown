@@ -25,6 +25,31 @@ We wanted to improve on this, both by submitting logs asynchronously again and a
 
 In the end, we created "[go-gaelog](https://github.com/a1comms/go-gaelog){: target="_blank"}" to achieve this.
 
-Borrowing some experience from working with the PHP 7.2 runtime, where we learnt that logs written to any file written with a filename that matched "/var/log/\*.log" would automatically be checked for JSON then submitted to the Stackdriver Logs API by the underlying platform.
+Borrowing some experience from working with the PHP 7.2 runtime, where we learnt that logs written to any file written with a filename that matched `/var/log/*.log` would automatically be checked for JSON then submitted to the Stackdriver Logs API by the underlying platform.
 
-&nbsp;
+In the below example, taken from [here](https://github.com/a1comms/go-gaelog/blob/v2/examples/main/main.go){: target="_blank"}, you'll see the basic usage and how in the bottom log entry, we are submitting a `map[string]interface{}` object that'll get logged into `jsonPayload` in the resulting entry.
+
+```go
+package main
+
+import (
+	...
+
+	glog "github.com/a1comms/go-gaelog"
+)
+
+func main() {
+	...
+}
+
+func defaultHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := glog.GetContext(r)
+
+	glog.Printf(ctx, nil, "I'm logging, %s", "wuhoo!")
+
+	glog.Errorf(ctx, map[string]interface{}{
+		"code":    403,
+		"message": "Permission Denied",
+	}, "HTTP ERROR")
+}
+```
