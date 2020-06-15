@@ -7,6 +7,7 @@ categories:
   - OAuth2
   - GCP-IAM
   - Cryptography
+  - PHP
 ---
 
 Recently we had a requirement to integrate with a partner that was using their own OAuth2 infrastructure, which required us to use a public/private key pair and signed JWTs, equivalent of Google's 2LO (2-legged) OAuth2 with their service accounts.
@@ -29,7 +30,7 @@ We were doing this in PHP, so we chose to use the [JWT library by lcobucci](http
 
 Here is an excerpt from that code:
 
-```php
+~~~php
 $client = new Google_Client();
 
 $client->setApplicationName('GaeSupportLaravel-JWT/0.1');
@@ -47,11 +48,11 @@ $requestBody->setPayload(base64_encode($payload));
 $response = $service->projects_serviceAccounts->signBlob($keyID, $requestBody);
 
 return base64_decode($response->getSignedBlob());
-```
+~~~
 
 An example of this in action as a Lumen route handler is shown below:
 
-```php
+~~~php
 $router->get('/debug/jwt', function () use ($router) {
     $time = time();
 
@@ -73,11 +74,11 @@ $router->get('/debug/jwt', function () use ($router) {
 
     return 'OK';
 });
-```
+~~~
 
 You'll also need to run these composer commands (assuming you already have [GaeSupportLaravel](https://github.com/a1comms/GaeSupportLaravel){: target="_blank"} included):
 
-```
+~~~
 $ composer require lcobucci/jwt
 $ composer require google/apiclient:"^2.0"
-```
+~~~
