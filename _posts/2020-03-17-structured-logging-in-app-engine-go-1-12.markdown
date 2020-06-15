@@ -29,7 +29,7 @@ Borrowing some experience from working with the PHP 7.2 runtime, where we learnt
 
 In the below example, taken from [here](https://github.com/a1comms/go-gaelog/blob/v2/examples/main/main.go){: target="_blank"}, you'll see the basic usage and how in the bottom log entry, we are submitting a `map[string]interface{}` object that'll get logged into `jsonPayload` in the resulting entry.
 
-```go
+~~~go
 package main
 
 import (
@@ -52,4 +52,4 @@ func defaultHandler(w http.ResponseWriter, r *http.Request) {
 		"message": "Permission Denied",
 	}, "HTTP ERROR")
 }
-```
+~~~
