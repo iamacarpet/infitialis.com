@@ -10,7 +10,7 @@ categories:
   - AdWords
 ---
 
-.We recently had a requirement to communicate with Google's AdWords API from an application on App Engine, which proved to be frustrating when it came to implementing authentication, as documented in the AdWords PHP library.
+We recently had a requirement to communicate with Google's AdWords API from an application on App Engine, which proved to be frustrating when it came to implementing authentication, as documented in the AdWords PHP library.
 
 By default, they recommend using [OAuth2 credentials obtained in a client-server authentication flow](https://github.com/googleads/googleads-php-lib/wiki/API-access-using-own-credentials-&#40;installed-application-flow&#41;){: target="_blank"}, then saving the refresh token and client ID details inside an ini file which needs to be readable by the application.
 
@@ -32,16 +32,34 @@ My code is included in [GaeSupportLaravel](https://github.com/a1comms/GaeSupport
 
 To use this with AdWords, a real world code example changes from this:
 
-use A1comms\\GaeSupportLaravel\\Integration\\JWT\\TokenSource\\DWDTokenSource;
+```php
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 ...
 
-&nbsp; &nbsp; protected function \_\_getAdWordsClient()
+    protected function __getAdWordsClient()
+    {
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile(__DIR__ . '/adsapi_php.ini')->build();
+        return (new AdWordsSessionBuilder())->fromFile(__DIR__ . '/adsapi_php.ini')->withOAuth2Credential($oAuth2Credential)->build();
+    }
+    
+...
 
-&nbsp; &nbsp; \{
-
-&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+```
 
 To this:
 
-&nbsp;
+```php
+use A1comms\GaeSupportLaravel\Integration\JWT\TokenSource\DWDTokenSource;
+
+...
+
+    protected function __getAdWordsClient()
+    {
+        $oAuth2Credential = $tokensource = new DWDTokenSource(env('ADWORDS_USER_EMAIL'), ['https://www.googleapis.com/auth/adwords']);
+        return (new AdWordsSessionBuilder())->fromFile(__DIR__ . '/adsapi_php.ini')->withOAuth2Credential($oAuth2Credential)->build();
+    }
+    
+...
+
+```
