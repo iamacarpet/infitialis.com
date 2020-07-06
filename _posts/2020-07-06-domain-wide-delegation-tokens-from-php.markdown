@@ -32,7 +32,7 @@ My code is included in [GaeSupportLaravel](https://github.com/a1comms/GaeSupport
 
 To use this with AdWords, a real world code example changes from this:
 
-```php
+~~~php
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 ...
@@ -42,14 +42,13 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile(__DIR__ . '/adsapi_php.ini')->build();
         return (new AdWordsSessionBuilder())->fromFile(__DIR__ . '/adsapi_php.ini')->withOAuth2Credential($oAuth2Credential)->build();
     }
-    
-...
 
-```
+...
+~~~
 
 To this:
 
-```php
+~~~php
 use A1comms\GaeSupportLaravel\Integration\JWT\TokenSource\DWDTokenSource;
 
 ...
@@ -59,7 +58,6 @@ use A1comms\GaeSupportLaravel\Integration\JWT\TokenSource\DWDTokenSource;
         $oAuth2Credential = $tokensource = new DWDTokenSource(env('ADWORDS_USER_EMAIL'), ['https://www.googleapis.com/auth/adwords']);
         return (new AdWordsSessionBuilder())->fromFile(__DIR__ . '/adsapi_php.ini')->withOAuth2Credential($oAuth2Credential)->build();
     }
-    
-...
 
-```
+...
+~~~
