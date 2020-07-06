@@ -24,7 +24,7 @@ I started looking at how to accomplish the same thing in PHP and it was actually
 
 * AdWords requires an authentication class that implements&nbsp;[FetchAuthTokenInterface](https://github.com/googleapis/google-auth-library-php/blob/master/src/FetchAuthTokenInterface.php#L23){: target="_blank"}
 * OAuth2TokenBuilder handles this by creating an instance of either&nbsp;[ServiceAccountCredentials](https://github.com/googleads/googleads-php-lib/blob/693a85c71ae54117db9858b0bb80cbc305db25c5/src/Google/AdsApi/Common/OAuth2TokenBuilder.php#L176){: target="_blank"} or&nbsp;[UserRefreshCredentials](https://github.com/googleads/googleads-php-lib/blob/693a85c71ae54117db9858b0bb80cbc305db25c5/src/Google/AdsApi/Common/OAuth2TokenBuilder.php#L182){: target="_blank"}
-* [ServiceAccountCredentials](https://github.com/googleapis/google-auth-library-php/blob/master/src/Credentials/ServiceAccountCredentials.php){: target="_blank"} and&nbsp;[UserRefreshCredentials](https://github.com/googleapis/google-auth-library-php/blob/master/src/Credentials/UserRefreshCredentials.php){: target="_blank"}&nbsp;are internally implemented by creating an instance of the [OAuth2](https://github.com/googleapis/google-auth-library-php/blob/master/src/OAuth2.php){: target="_blank"} class with handles a lot of the heavy lifting.
+* [ServiceAccountCredentials](https://github.com/googleapis/google-auth-library-php/blob/master/src/Credentials/ServiceAccountCredentials.php){: target="_blank"} and&nbsp;[UserRefreshCredentials](https://github.com/googleapis/google-auth-library-php/blob/master/src/Credentials/UserRefreshCredentials.php){: target="_blank"}&nbsp;are internally implemented by creating an instance of the [OAuth2](https://github.com/googleapis/google-auth-library-php/blob/master/src/OAuth2.php){: target="_blank"} class which handles a lot of the heavy lifting.
 
 As far as I can tell, the OAuth2 class doesn't expose the right options to be able to use it natively (it only support a sign key option, where what we really need is a signer interface, or callback function), but we can extend it fairly easily.
 
@@ -55,9 +55,13 @@ use A1comms\GaeSupportLaravel\Integration\JWT\TokenSource\DWDTokenSource;
 
     protected function __getAdWordsClient()
     {
-        $oAuth2Credential = $tokensource = new DWDTokenSource(env('ADWORDS_USER_EMAIL'), ['https://www.googleapis.com/auth/adwords']);
+        $oAuth2Credential = new DWDTokenSource(env('ADWORDS_USER_EMAIL'), ['https://www.googleapis.com/auth/adwords']);
         return (new AdWordsSessionBuilder())->fromFile(__DIR__ . '/adsapi_php.ini')->withOAuth2Credential($oAuth2Credential)->build();
     }
 
 ...
 ~~~
+
+I've opened tickets in both&nbsp;[Google's auth library](https://github.com/googleapis/google-auth-library-php/issues/287){: target="_blank"}&nbsp;and the [AdWords API library](https://github.com/googleads/googleads-php-lib/issues/670){: target="_blank"}.
+
+&nbsp;
