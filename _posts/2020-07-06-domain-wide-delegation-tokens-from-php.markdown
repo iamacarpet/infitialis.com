@@ -28,7 +28,7 @@ I started looking at how to accomplish the same thing in PHP and it was actually
 
 As far as I can tell, the OAuth2 class doesn't expose the right options to be able to use it natively (it only support a sign key option, where what we really need is a signer interface, or callback function), but we can extend it fairly easily.
 
-My code is included in [GaeSupportLaravel](https://github.com/a1comms/GaeSupportLaravel/blob/php72-laravel55/src/A1comms/GaeSupportLaravel/Integration/JWT/TokenSource/DWDTokenSource.php){: target="_blank"}, but can be pulled into other projects fairly easily as it's a small class, also making use of the [IAMSigner class](https://github.com/a1comms/GaeSupportLaravel/blob/php72-laravel55/src/A1comms/GaeSupportLaravel/Integration/JWT/Signer/IAMSigner.php){: target="_blank"} we created in one of my last posts, for signing JWTs with the [Service Account Credentials API](https://github.com/a1comms/GaeSupportLaravel/blob/php72-laravel55/src/A1comms/GaeSupportLaravel/Integration/JWT/Signer/IAMSigner.php){: target="_blank"}.
+My code is included in [GaeSupportLaravel](https://github.com/a1comms/GaeSupportLaravel/blob/php72-laravel55/src/A1comms/GaeSupportLaravel/Integration/JWT/TokenSource/DWDTokenSource.php){: target="_blank"}, but can be pulled into other projects fairly easily as it's a small class, also making use of the [IAMSigner class](https://github.com/a1comms/GaeSupportLaravel/blob/php72-laravel55/src/A1comms/GaeSupportLaravel/Integration/JWT/Signer/IAMSigner.php){: target="_blank"} we created in one of my last posts, for signing JWTs with the [Service Account Credentials API](https://cloud.google.com/iam/docs/reference/credentials/rest/v1/projects.serviceAccounts){: target="_blank"}.
 
 To use this with AdWords, a real world code example changes from this:
 
@@ -61,6 +61,8 @@ use A1comms\GaeSupportLaravel\Integration\JWT\TokenSource\DWDTokenSource;
 
 ...
 ~~~
+
+And the `adsapi_php.ini` file no longer contains any credentials, only the `developerToken`.
 
 I've opened tickets in both&nbsp;[Google's auth library](https://github.com/googleapis/google-auth-library-php/issues/287){: target="_blank"}&nbsp;and the [AdWords API library](https://github.com/googleads/googleads-php-lib/issues/670){: target="_blank"}.
 
