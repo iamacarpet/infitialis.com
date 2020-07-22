@@ -85,6 +85,8 @@ $ composer require google/apiclient:"^2.0"
 
 **EDIT:**
 
-While it wasn't documented (only hinted at by saying you are required to think about your own key rotation when using downloaded keys for your service account), our experience of using this in production suggests Google are automatically rotating these service account certificates roughly every 15 days, so it's important you are verifying against their JWKS endpoint, not storing the public key statically, as we had done while testing.
+While it wasn't documented (only hinted at by saying you are required to think about your own key rotation when using downloaded keys for your service account), our experience of using this in production suggests *<u>Google are automatically rotating these service account key pairs roughly every 15 days.</u>*
+
+This means it's important you are verifying against their JWKS (or other) endpoint, not storing the public key statically, as we had done while testing.
 
 &nbsp;
